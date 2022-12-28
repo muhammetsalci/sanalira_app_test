@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
                   hintStyle: TextStyle(color: Colors.white),
                 )),
             debugShowCheckedModeBanner: false,
-            home: const BankListScreen(),
+            home: const RegisterScreen(),
           );
         });
   }
