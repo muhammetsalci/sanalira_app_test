@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sanalira_flutter_test/model/bank_model.dart';
 import 'package:sanalira_flutter_test/services/bank_services.dart';
+import 'package:sanalira_flutter_test/widgets/custom_bottom_sheet_widget.dart';
 
 class BankListScreen extends StatefulWidget {
   const BankListScreen({super.key});
@@ -109,54 +110,7 @@ class _BankListScreenState extends State<BankListScreen> {
     );
   }
 
-  Expanded _buildBankList() {
-    return Expanded(
-            child: isLoading == true
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : ListView.builder(
-                    itemCount: bankalar?.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        margin: EdgeInsets.only(bottom: 10.h),
-                        child: ListTile(
-                          leading: SizedBox(
-                            width: 78.w,
-                            height: 60.h,
-                            child: Center(
-                              child: Image.asset(
-                                "assets/banka_icon/$index.png",
-                                scale: 4,
-                              ),
-                            ),
-                          ),
-                          title: Text(
-                            bankalar![index].bankName.toString(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                    color: const Color(0xFF141C2D),
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12),
-                          ),
-                          subtitle: Text("Havale / EFT ile para gönderin.",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(fontSize: 12)),
-                        ),
-                      );
-                    },
-                  ),
-          );
-  }
-
+ 
   Padding _buildBakiye(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -180,6 +134,71 @@ class _BankListScreenState extends State<BankListScreen> {
           ),
         ),
       ),
+    );
+  }
+ 
+  Expanded _buildBankList() {
+    return Expanded(
+      child: isLoading == true
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              itemCount: bankalar?.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  margin: EdgeInsets.only(bottom: 10.h),
+                  child: ListTile(
+                    leading: SizedBox(
+                      width: 78.w,
+                      height: 60.h,
+                      child: Center(
+                        child: Image.asset(
+                          "assets/banka_icon/$index.png",
+                          scale: 4,
+                        ),
+                      ),
+                    ),
+                    title: Text(
+                      bankalar![index].bankName.toString(),
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: const Color(0xFF141C2D),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12.sp),
+                    ),
+                    subtitle: Text("Havale / EFT ile para gönderin.",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText2
+                            ?.copyWith(fontSize: 12)),
+                    onTap: () {
+                      showBottomSheet(
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20)),
+                          ),
+                          backgroundColor: Colors.white,
+                          builder: (BuildContext context) {
+                            return SingleChildScrollView(
+                              child: CustomBottomSheet(
+                                bankAccountName:
+                                    bankalar![index].bankAccountName,
+                                bankIban: bankalar![index].bankIban,
+                                descriptionNo: bankalar![index].descriptionNo,
+                              ),
+                            );
+                          });
+                    },
+                  ),
+                );
+              },
+            ),
     );
   }
 
@@ -223,7 +242,7 @@ class _BankListScreenState extends State<BankListScreen> {
             ),
             label: ""),
       ],
-      currentIndex: 3,
     );
   }
+
 }
