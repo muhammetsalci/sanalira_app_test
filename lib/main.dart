@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sanalira_flutter_test/screens/bank_list_screen.dart';
-import 'package:sanalira_flutter_test/screens/register_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -60,7 +59,7 @@ class _MyAppState extends State<MyApp> {
                   hintStyle: TextStyle(color: Colors.white),
                 )),
             debugShowCheckedModeBanner: false,
-            home: const RegisterScreen(),
+            home: const BankListScreen(),
           );
         });
   }
