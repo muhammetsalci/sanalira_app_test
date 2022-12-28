@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sanalira_flutter_test/screens/bank_list_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -29,7 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             colorFilter: ColorFilter.mode(
                 const Color.fromARGB(255, 34, 41, 55).withOpacity(0.2),
                 BlendMode.dstATop),
-            image: const AssetImage("assets/loginBackground.png"),
+            image: const AssetImage("assets/register_screen_icon/registerBackground.png"),
             fit: BoxFit.fill,
           ),
         ),
@@ -43,7 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      "assets/sanaliraLogo.png",
+                      "assets/register_screen_icon/sanaliraLogo.png",
                       height: 64.h,
                     ),
                     SizedBox(
@@ -367,7 +368,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
               fontWeight: FontWeight.bold),
         ),
         onPressed: () async {
-          if (_formKey.currentState!.validate() && isChecked == true) {}
+          if (_formKey.currentState!.validate() && isChecked == true) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const BankListScreen(),
+              ),
+            );
+          }
         });
   }
 }

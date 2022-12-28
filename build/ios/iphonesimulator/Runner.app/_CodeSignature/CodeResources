@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		fgnGQQZC65wt9tieXVY0Z67DqDI=
+		DomHImtI3DSBB8d1QyqKdv95U20=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,11 +54,11 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		3b0oT6lFyNKfA3aQ4Nu8EETPdFY=
+		+7wMz+ofWKIn2x35aaD3LgChfyE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		2lKz6WN8MdZCVlgMTHxTZKt8OoU=
+		Xyqt7csHQ6Pf4e2un3RgrDL3KXA=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -67,14 +67,6 @@
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
 		nqeipiG0/B81d1MSBsMv3tHCI+U=
-		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/loginBackground.png</key>
-		<data>
-		U3WzUK6m/EHN7mlsxBMV6vp1htg=
-		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/sanaliraLogo.png</key>
-		<data>
-		PEnoHZtxSZvcX73dGTDhrbVP0xE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -86,7 +78,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		keX1Lbv7OdzsqL3a2xYBZ8X58uY=
+		Cm5XPdiqG/QXg6f9Spjv51LmiHY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -269,7 +261,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			G4zl1a7wahxqhS0x3IWFJdRiEPUHGs92U7WmXdUqJGQ=
+			1qqEGaPqu69/HsPAbkvFU9YmncxqHqEkl8stXK0I8yI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -283,14 +275,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			m57A6aUD2HZ82iJ/puleoC6y2tsdsjyuHiWRzClTFbk=
+			sHjciuDauJrMfj84tEkwDW2mNnF0XVhxvOyQtMz1VLA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pt3/EsDo9NU10hnToOq73sW+WYQZ0D8AD2DKEJD1rWk=
+			M3WdvKbHw8prJmVCMHxLQ43hnRrvAMLwA7HdGjU26hc=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -305,20 +297,6 @@
 			<key>hash2</key>
 			<data>
 			WPHw0qWLfeS/VXDKm4Ivc9y/P1mXu24BUCv6Ro7xoLs=
-			</data>
-		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/loginBackground.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Idd9vic/4S4iz+pnEUUVQL+LEPQU1j8fNr7j4OQc8Es=
-			</data>
-		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/sanaliraLogo.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			NFkjXmuvGBPN665ei2iT4xA+VAb3XvmuV6+dY0Ad93E=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -339,7 +317,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UNdfEQNf+7bSJzVJ6MNdX1/IBHASsV53CurSq8V0eJM=
+			h0NJymrzV1V/D1kzeWWe2NyWLCgltRgufOfEmx4dA28=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

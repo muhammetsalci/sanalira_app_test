@@ -24,4 +24,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/
+    - assets/banka_icon/
+    - assets/flags/
+    - assets/navigation_bar_icon/
+    - assets/register_screen_icon/
