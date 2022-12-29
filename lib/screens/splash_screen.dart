@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sanalira_flutter_test/screens/bank_list_screen.dart';
 import 'package:sanalira_flutter_test/screens/register_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,23 +14,18 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final storage = const FlutterSecureStorage();
-
-  Future<void> storageRead() async {
-
-  }
+  final _prefs = SharedPreferences.getInstance();
+  bool isLogin = false;
 
   @override
   void initState() {
-    
     super.initState();
 
     Timer(const Duration(seconds: 1), () async {
-          final isLogin = await storage.read(key: 'login');
-
-      print("isLogin: "+isLogin.toString());
-
-      if (isLogin!=null) {
+      final prefs = await _prefs;
+      isLogin = prefs.getBool('login')?? false;
+      print(isLogin.toString());
+      if (isLogin) {
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => const BankListScreen()),

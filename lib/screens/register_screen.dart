@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sanalira_flutter_test/screens/bank_list_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -12,8 +12,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
-
-  final storage = const FlutterSecureStorage();
+  // Shared Preferences'ı açar
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   bool? isChecked = false;
   final TextEditingController _firstNameController = TextEditingController();
@@ -101,59 +101,55 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ?.copyWith(fontSize: 13.sp),
                       ),
                       Form(
-                          key: _formKey,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(top: 10.h, bottom: 2.h),
-                                child: Text(
-                                  "Ad",
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.h, bottom: 2.h),
+                              child: Text(
+                                "Ad",
+                                style: Theme.of(context).textTheme.bodyText2,
                               ),
-                              _buildNameField(context),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(top: 10.h, bottom: 2.h),
-                                child: Text(
-                                  "Soyad",
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
+                            ),
+                            _buildNameField(context),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.h, bottom: 2.h),
+                              child: Text(
+                                "Soyad",
+                                style: Theme.of(context).textTheme.bodyText2,
                               ),
-                              _buildLastNameField(context),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(top: 10.h, bottom: 2.h),
-                                child: Text(
-                                  "E-Posta",
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
+                            ),
+                            _buildLastNameField(context),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.h, bottom: 2.h),
+                              child: Text(
+                                "E-Posta",
+                                style: Theme.of(context).textTheme.bodyText2,
                               ),
-                              _buildEmailField(context),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(top: 10.h, bottom: 2.h),
-                                child: Text(
-                                  "Şifre",
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
+                            ),
+                            _buildEmailField(context),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.h, bottom: 2.h),
+                              child: Text(
+                                "Şifre",
+                                style: Theme.of(context).textTheme.bodyText2,
                               ),
-                              _buildPasswordField(context),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(top: 10.h, bottom: 2.h),
-                                child: Text(
-                                  "Cep Telefonu Numaranız",
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
+                            ),
+                            _buildPasswordField(context),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.h, bottom: 2.h),
+                              child: Text(
+                                "Cep Telefonu Numaranız",
+                                style: Theme.of(context).textTheme.bodyText2,
                               ),
-                              _buildPhoneNumberField(context),
-                              _buildCheck(context),
-                              _buildRegisterButton(context),
-                            ],
-                          ))
+                            ),
+                            _buildPhoneNumberField(context),
+                            _buildCheck(context),
+                            _buildRegisterButton(context),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -283,24 +279,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Row(
       children: [
         Container(
-          constraints: BoxConstraints(minWidth: 75.w, maxWidth: 75.w),
+          padding: EdgeInsets.only(left: 10.w, right: 10.w),
+          constraints: BoxConstraints(minWidth: 85.w, maxWidth: 85.w),
           alignment: Alignment.center,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.white, width: 1.w)),
           child: TextFormField(
             readOnly: true,
-            decoration: const InputDecoration(
-              hintText: "   +90",
+            decoration: InputDecoration(
+              icon: Image.asset(
+                "assets/flags/tr.png",
+                scale: 4,
+              ),
+              hintText: '+90',
+              hintStyle: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .copyWith(color: Colors.white),
+              contentPadding: EdgeInsets.only(left: -7.0.w),
             ),
-            style: Theme.of(context).textTheme.bodyText1,
           ),
         ),
         Container(
           margin: EdgeInsets.only(left: 8.w),
           padding: EdgeInsets.only(left: 16.w, right: 16.w),
           constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width - 115.w, //
+              maxWidth: MediaQuery.of(context).size.width - 125.w, //
               minWidth: MediaQuery.of(context).size.width / 2.w),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -313,9 +318,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
             keyboardType: TextInputType.number,
             controller: _phoneNumberController,
             validator: (value) {
-              if (value!.length != 10) {
+              if (value!.length < 10) {
                 return "Eksik tuşlama yaptınız.";
-              } else {
+              }
+              else if(value.length > 10){
+                return "Fazla tuşlama yaptınız.";
+              }
+              else {
                 if (value[0] != "5") {
                   return "Doğru bir telefon numarası giriniz.";
                 }
@@ -384,7 +393,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
         onPressed: () async {
           if (_formKey.currentState!.validate() && isChecked == true) {
-            await storage.write(key: 'login', value: "yes");
+            final prefs = await _prefs;
+            prefs.setBool('login', true);
+            //await storage.write(key: 'login', value: "yes");
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => const BankListScreen()),

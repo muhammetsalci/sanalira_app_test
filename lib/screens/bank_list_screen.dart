@@ -2,10 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sanalira_flutter_test/model/bank_model.dart';
 import 'package:sanalira_flutter_test/services/bank_services.dart';
 import 'package:sanalira_flutter_test/widgets/custom_bottom_sheet_widget.dart';
+import 'package:smart_alert_dialog/models/alert_dialog_text.dart';
+import 'package:smart_alert_dialog/smart_alert_dialog.dart';
 
 class BankListScreen extends StatefulWidget {
   const BankListScreen({super.key});
@@ -15,7 +16,6 @@ class BankListScreen extends StatefulWidget {
 }
 
 class _BankListScreenState extends State<BankListScreen> {
-  final storage = const FlutterSecureStorage();
   bool isLoading = true;
   final BankService _service = BankService();
   List<Data>? bankalar = [];
@@ -54,8 +54,7 @@ class _BankListScreenState extends State<BankListScreen> {
             ),
           ),
           onTap: () async {
-            //storage.deleteAll();
-            exit(0);
+            _yesNoSmartAlert(context);
           },
         ),
         actions: [
@@ -248,4 +247,18 @@ class _BankListScreenState extends State<BankListScreen> {
       ],
     );
   }
+
+  _yesNoSmartAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => SmartAlertDialog(
+        text: AlertDialogText(confirm: "Evet", cancel: "Hayır"),
+        message: "Uygulamadan Çıkmak İstediğinize Emin Misiniz?",
+        onConfirmPressed: () => exit(0),
+        onCancelPressed: () {},
+        title: 'UYARI',
+      ),
+    );
+  }
+
 }
