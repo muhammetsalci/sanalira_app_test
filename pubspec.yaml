@@ -16,7 +16,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   clipboard:
   toast: ^0.3.0
-  flutter_secure_storage: ^3.3.2
+  flutter_secure_storage: ^7.0.1
 
 dev_dependencies:
   flutter_test:

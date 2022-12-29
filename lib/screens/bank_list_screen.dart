@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sanalira_flutter_test/model/bank_model.dart';
 import 'package:sanalira_flutter_test/services/bank_services.dart';
 import 'package:sanalira_flutter_test/widgets/custom_bottom_sheet_widget.dart';
@@ -12,6 +15,7 @@ class BankListScreen extends StatefulWidget {
 }
 
 class _BankListScreenState extends State<BankListScreen> {
+  final storage = const FlutterSecureStorage();
   bool isLoading = true;
   final BankService _service = BankService();
   List<Data>? bankalar = [];
@@ -49,8 +53,9 @@ class _BankListScreenState extends State<BankListScreen> {
               ),
             ),
           ),
-          onTap: () {
-            Navigator.pop(context);
+          onTap: () async {
+            //storage.deleteAll();
+            exit(0);
           },
         ),
         actions: [
@@ -110,7 +115,6 @@ class _BankListScreenState extends State<BankListScreen> {
     );
   }
 
- 
   Padding _buildBakiye(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.h),
@@ -136,7 +140,7 @@ class _BankListScreenState extends State<BankListScreen> {
       ),
     );
   }
- 
+
   Expanded _buildBankList() {
     return Expanded(
       child: isLoading == true
@@ -244,5 +248,4 @@ class _BankListScreenState extends State<BankListScreen> {
       ],
     );
   }
-
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sanalira_flutter_test/screens/bank_list_screen.dart';
-import 'package:sanalira_flutter_test/screens/register_screen.dart';
+import 'package:sanalira_flutter_test/screens/splash_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,6 +12,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  
   @override
   void initState() {
     super.initState();
@@ -20,6 +20,7 @@ class _MyAppState extends State<MyApp> {
       context,
       designSize: const Size(411, 800),
     );
+    
   }
 
   @override
@@ -60,7 +61,7 @@ class _MyAppState extends State<MyApp> {
                   hintStyle: TextStyle(color: Colors.white),
                 )),
             debugShowCheckedModeBanner: false,
-            home: const RegisterScreen(),
+            home: const SplashScreen(),
           );
         });
   }

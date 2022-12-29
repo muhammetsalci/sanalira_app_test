@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sanalira_flutter_test/screens/bank_list_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -12,10 +13,12 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
 
+  final storage = const FlutterSecureStorage();
+
   bool? isChecked = false;
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _emailAddressController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
 
@@ -30,7 +33,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             colorFilter: ColorFilter.mode(
                 const Color.fromARGB(255, 34, 41, 55).withOpacity(0.2),
                 BlendMode.dstATop),
-            image: const AssetImage("assets/register_screen_icon/registerBackground.png"),
+            image: const AssetImage(
+                "assets/register_screen_icon/registerBackground.png"),
             fit: BoxFit.fill,
           ),
         ),
@@ -161,6 +165,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
+  @override
+  void dispose() {
+    // TextEditingController'ı liberalleştirir
+    _lastNameController.dispose();
+    _firstNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _phoneNumberController.dispose();
+    super.dispose();
+  }
+
   Widget _buildNameField(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 16.w, right: 16.w),
@@ -230,7 +245,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           hintText: "esrefyasa@monegon.com",
         ),
         style: Theme.of(context).textTheme.bodyText1,
-        controller: _emailAddressController,
+        controller: _emailController,
       ),
     );
   }
@@ -369,11 +384,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
         onPressed: () async {
           if (_formKey.currentState!.validate() && isChecked == true) {
-            Navigator.push(
+            await storage.write(key: 'login', value: "yes");
+            Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(
-                builder: (context) => const BankListScreen(),
-              ),
+              MaterialPageRoute(builder: (context) => const BankListScreen()),
+              (_) => false,
             );
           }
         });
